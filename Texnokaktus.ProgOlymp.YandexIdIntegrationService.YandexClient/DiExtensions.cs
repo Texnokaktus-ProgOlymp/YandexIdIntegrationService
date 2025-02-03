@@ -14,6 +14,7 @@ public static class DiExtensions
 {
     public static IServiceCollection AddYandexClient(this IServiceCollection services) =>
         services.AddScoped<IYandexAuthenticationService, YandexAuthenticationService>()
+                .AddScoped<IYandexIdClient, YandexIdClient>()
                 .AddOAuthClient()
                 .AddYandexIdClient()
                 .AddYandexAppParameters();
