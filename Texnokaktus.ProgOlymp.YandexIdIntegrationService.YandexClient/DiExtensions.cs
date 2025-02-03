@@ -41,11 +41,10 @@ public static class DiExtensions
                                              });
 
     private static IServiceCollection AddYandexIdClient(this IServiceCollection services) =>
-        services.AddKeyedScoped<YandexIdClientFactory>(ClientType.YandexId,
-                                                       (_, _) => token =>
-                                                       {
-                                                           var authenticator = new OAuth2AuthorizationRequestHeaderAuthenticator(token);
-                                                           return new RestClient("https://login.yandex.ru",
-                                                                                 options => options.Authenticator = authenticator);
-                                                       });
+        services.AddScoped<YandexIdClientFactory>(_ => token =>
+        {
+            var authenticator = new OAuth2AuthorizationRequestHeaderAuthenticator(token);
+            return new RestClient("https://login.yandex.ru",
+                                  options => options.Authenticator = authenticator);
+        });
 }

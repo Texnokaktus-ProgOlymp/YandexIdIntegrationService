@@ -20,7 +20,10 @@ internal class UserRepository(AppDbContext context) : IUserRepository
     {
         var entity = new User
         {
-            Login = insertModel.Login, AvatarId = insertModel.AvatarId
+            Login = insertModel.Login,
+            DisplayName = insertModel.DisplayName,
+            IsAvatarEmpty = insertModel.IsAvatarEmpty,
+            AvatarId = insertModel.AvatarId
         };
 
         return context.Users.Add(entity).Entity;

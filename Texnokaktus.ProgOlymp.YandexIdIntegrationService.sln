@@ -6,6 +6,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Texnokaktus.ProgOlymp.Yande
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient", "Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient\Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient.csproj", "{35F4B862-0369-4BF6-8DE5-B83A3999863F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Texnokaktus.ProgOlymp.YandexIdIntegrationService.Logic", "Texnokaktus.ProgOlymp.YandexIdIntegrationService.Logic\Texnokaktus.ProgOlymp.YandexIdIntegrationService.Logic.csproj", "{F290D8B2-B129-482F-82D4-1FEE7236A415}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Texnokaktus.ProgOlymp.YandexIdIntegrationService.Domain", "Texnokaktus.ProgOlymp.YandexIdIntegrationService.Domain\Texnokaktus.ProgOlymp.YandexIdIntegrationService.Domain.csproj", "{99FBF5D1-4777-4657-9EBB-E3A14F5038B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +28,13 @@ Global
 		{35F4B862-0369-4BF6-8DE5-B83A3999863F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{35F4B862-0369-4BF6-8DE5-B83A3999863F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{35F4B862-0369-4BF6-8DE5-B83A3999863F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F290D8B2-B129-482F-82D4-1FEE7236A415}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F290D8B2-B129-482F-82D4-1FEE7236A415}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F290D8B2-B129-482F-82D4-1FEE7236A415}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F290D8B2-B129-482F-82D4-1FEE7236A415}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99FBF5D1-4777-4657-9EBB-E3A14F5038B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99FBF5D1-4777-4657-9EBB-E3A14F5038B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99FBF5D1-4777-4657-9EBB-E3A14F5038B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99FBF5D1-4777-4657-9EBB-E3A14F5038B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
