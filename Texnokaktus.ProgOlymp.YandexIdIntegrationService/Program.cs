@@ -29,7 +29,7 @@ builder.Services
 
 builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
 
-builder.Services.AddTexnokaktusOpenTelemetry(builder.Configuration, "YandexContestIntegrationService", null, null);
+builder.Services.AddTexnokaktusOpenTelemetry(builder.Configuration, "YandexIdIntegrationService", null, null);
 
 builder.Services
        .AddDataProtection(options => options.ApplicationDiscriminator = Assembly.GetEntryAssembly()?.GetName().Name)
