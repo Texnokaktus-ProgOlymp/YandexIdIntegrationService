@@ -4,6 +4,7 @@
         <TargetFramework>net9.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
     </PropertyGroup>
 
     <ItemGroup>
@@ -26,6 +27,12 @@
       <ProjectReference Include="..\Texnokaktus.ProgOlymp.YandexIdIntegrationService.DataAccess\Texnokaktus.ProgOlymp.YandexIdIntegrationService.DataAccess.csproj" />
       <ProjectReference Include="..\Texnokaktus.ProgOlymp.YandexIdIntegrationService.Logic\Texnokaktus.ProgOlymp.YandexIdIntegrationService.Logic.csproj" />
       <ProjectReference Include="..\Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient\Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
     </ItemGroup>
 
 </Project>
