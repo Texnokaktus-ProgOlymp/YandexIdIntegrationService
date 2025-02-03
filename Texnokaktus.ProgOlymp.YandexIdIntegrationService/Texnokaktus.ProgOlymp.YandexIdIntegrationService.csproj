@@ -14,4 +14,9 @@
         <PackageReference Include="Grpc.AspNetCore" Version="2.64.0"/>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Texnokaktus.ProgOlymp.YandexIdIntegrationService.DataAccess\Texnokaktus.ProgOlymp.YandexIdIntegrationService.DataAccess.csproj" />
+      <ProjectReference Include="..\Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient\Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient.csproj" />
+    </ItemGroup>
+
 </Project>
