@@ -7,14 +7,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Protobuf Include="Protos\greet.proto" GrpcServices="Server"/>
+        <PackageReference Include="Grpc.AspNetCore" Version="2.67.0" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Grpc.AspNetCore" Version="2.64.0"/>
-    </ItemGroup>
-
-    <ItemGroup>
+      <ProjectReference Include="..\modules\Common.Contracts\Texnokaktus.ProgOlymp.Common.Contracts\Texnokaktus.ProgOlymp.Common.Contracts.csproj" />
       <ProjectReference Include="..\Texnokaktus.ProgOlymp.YandexIdIntegrationService.DataAccess\Texnokaktus.ProgOlymp.YandexIdIntegrationService.DataAccess.csproj" />
       <ProjectReference Include="..\Texnokaktus.ProgOlymp.YandexIdIntegrationService.Logic\Texnokaktus.ProgOlymp.YandexIdIntegrationService.Logic.csproj" />
       <ProjectReference Include="..\Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient\Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient.csproj" />
