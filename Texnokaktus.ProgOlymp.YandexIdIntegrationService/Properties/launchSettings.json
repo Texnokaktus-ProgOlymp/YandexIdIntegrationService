@@ -7,9 +7,7 @@
             "launchBrowser": false,
             "applicationUrl": "http://localhost:5280",
             "environmentVariables": {
-                "ASPNETCORE_ENVIRONMENT": "Development",
-                "YandexAppParameters__ClientId": "c4d941e7f402461dac9944a569328c24",
-                "YandexAppParameters__ClientSecret": "cc755a962c5546389a237ab2f51059aa"
+                "ASPNETCORE_ENVIRONMENT": "Development"
             }
         }
     }
