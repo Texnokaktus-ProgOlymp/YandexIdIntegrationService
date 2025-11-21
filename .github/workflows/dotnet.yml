@@ -21,7 +21,7 @@ jobs:
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: 9.x.x
+          dotnet-version: 10.x.x
       - name: Setup NuGet
         run: dotnet nuget add source --username Texnokaktus-ProgOlymp --password ${{ secrets.GITHUB_TOKEN }} --store-password-in-clear-text --name github "https://nuget.pkg.github.com/Texnokaktus-ProgOlymp/index.json"
       - name: Restore dependencies
@@ -84,6 +84,7 @@ jobs:
         id: build
         uses: docker/build-push-action@v6
         with:
+          platforms: linux/amd64,linux/arm64
           context: .
           build-args: |
             GHPAT=${{ secrets.GITHUB_TOKEN }}
@@ -94,11 +95,12 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
 
   deploy:
-    
+
     needs: docker
     runs-on: cttit
-    if: github.ref == 'refs/heads/master'
-    
+#    if: github.ref == 'refs/heads/master'
+    if: false
+
     env:
       IMAGE: ${{ needs.docker.outputs.name }}
       CONTAINER_NAME: yandex-id-integration-service
