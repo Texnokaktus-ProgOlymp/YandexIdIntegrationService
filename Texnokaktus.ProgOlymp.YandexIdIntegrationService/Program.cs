@@ -29,15 +29,13 @@ builder.Services
 
 builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
 
-builder.Services.AddTexnokaktusOpenTelemetry(builder.Configuration, "YandexIdIntegrationService", null, null);
+builder.Services.AddTexnokaktusOpenTelemetry("YandexIdIntegrationService", null, null);
 
 builder.Services
        .AddDataProtection(options => options.ApplicationDiscriminator = Assembly.GetEntryAssembly()?.GetName().Name)
        .PersistKeysToStackExchangeRedis(connectionMultiplexer);
 
 var app = builder.Build();
-
-app.UseOpenTelemetryPrometheusScrapingEndpoint();
 
 if (app.Environment.IsDevelopment())
 {
