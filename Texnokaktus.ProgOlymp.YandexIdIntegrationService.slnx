@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/Common/">
+    <Project Path="modules/Common.Contracts/Texnokaktus.ProgOlymp.Common.Contracts/Texnokaktus.ProgOlymp.Common.Contracts.csproj" />
+  </Folder>
+  <Project Path="Texnokaktus.ProgOlymp.YandexIdIntegrationService.DataAccess/Texnokaktus.ProgOlymp.YandexIdIntegrationService.DataAccess.csproj" />
+  <Project Path="Texnokaktus.ProgOlymp.YandexIdIntegrationService.Domain/Texnokaktus.ProgOlymp.YandexIdIntegrationService.Domain.csproj" />
+  <Project Path="Texnokaktus.ProgOlymp.YandexIdIntegrationService.Logic/Texnokaktus.ProgOlymp.YandexIdIntegrationService.Logic.csproj" />
+  <Project Path="Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient/Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient.csproj" />
+  <Project Path="Texnokaktus.ProgOlymp.YandexIdIntegrationService/Texnokaktus.ProgOlymp.YandexIdIntegrationService.csproj" />
+</Solution>
