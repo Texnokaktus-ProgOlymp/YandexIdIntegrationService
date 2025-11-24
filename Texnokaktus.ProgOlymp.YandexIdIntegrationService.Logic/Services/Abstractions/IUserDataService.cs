@@ -1,4 +1,4 @@
-using Texnokaktus.ProgOlymp.YandexIdIntegrationService.Domain;
+using Texnokaktus.ProgOlymp.YandexIdIntegrationService.DataAccess.Entities;
 
 namespace Texnokaktus.ProgOlymp.YandexIdIntegrationService.Logic.Services.Abstractions;
 

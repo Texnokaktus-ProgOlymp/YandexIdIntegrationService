@@ -1,14 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net9.0</TargetFramework>
+        <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Texnokaktus.ProgOlymp.YandexIdIntegrationService.DataAccess\Texnokaktus.ProgOlymp.YandexIdIntegrationService.DataAccess.csproj" />
-      <ProjectReference Include="..\Texnokaktus.ProgOlymp.YandexIdIntegrationService.Domain\Texnokaktus.ProgOlymp.YandexIdIntegrationService.Domain.csproj" />
       <ProjectReference Include="..\Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient\Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient.csproj" />
     </ItemGroup>
 

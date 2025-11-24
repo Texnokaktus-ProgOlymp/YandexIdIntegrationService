@@ -1,16 +1,16 @@
 using Grpc.Core;
 using Texnokaktus.ProgOlymp.Common.Contracts.Grpc.YandexId;
 using Texnokaktus.ProgOlymp.YandexIdIntegrationService.Logic.Services.Abstractions;
-using Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient.Services.Abstractions;
+using YandexOAuthClient.Abstractions;
 
 namespace Texnokaktus.ProgOlymp.YandexIdIntegrationService.Services.Grpc;
 
-public class UserServiceImpl(IUserDataService userDataService, IYandexAuthenticationService yandexAuthenticationService) : UserService.UserServiceBase
+public class UserServiceImpl(IUserDataService userDataService, IAuthService authService) : UserService.UserServiceBase
 {
     public override Task<GetOAuthUrlResponse> GetOAuthUrl(GetOAuthUrlRequest request, ServerCallContext context) =>
         Task.FromResult(new GetOAuthUrlResponse
         {
-            Result = yandexAuthenticationService.GetYandexOAuthUrl(request.RedirectUrl)
+            Result = authService.GetOAuthUrl(request.RedirectUrl)
         });
 
     public override async Task<AuthenticateUserResponse> AuthenticateUser(AuthenticateUserRequest request, ServerCallContext context)
@@ -37,17 +37,16 @@ public class UserServiceImpl(IUserDataService userDataService, IYandexAuthentica
 
 file static class MappingExtensions
 {
-    public static User MapUser(this Domain.User user) =>
+    public static User MapUser(this DataAccess.Entities.User user) =>
         new()
         {
             Login = user.Login,
             DisplayName = user.DisplayName,
-            Avatar = user.Avatar?.MapAvatar()
-        };
-
-    private static Avatar MapAvatar(this Domain.Avatar avatar) =>
-        new()
-        {
-            AvatarId = avatar.AvatarId
+            Avatar = user.IsAvatarEmpty.HasValue
+                         ? new Avatar
+                         {
+                             AvatarId = user.AvatarId
+                         }
+                         : null
         };
 }

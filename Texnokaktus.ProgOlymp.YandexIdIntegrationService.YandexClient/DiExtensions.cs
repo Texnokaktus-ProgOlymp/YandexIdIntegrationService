@@ -1,50 +1,26 @@
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using RestSharp;
-using RestSharp.Authenticators;
 using RestSharp.Authenticators.OAuth2;
-using Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient.Models;
-using Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient.Options;
 using Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient.Services;
 using Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient.Services.Abstractions;
+using YandexOAuthClient;
 
 namespace Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient;
 
 public static class DiExtensions
 {
-    public static IServiceCollection AddYandexClient(this IServiceCollection services) =>
-        services.AddScoped<IYandexAuthenticationService, YandexAuthenticationService>()
-                .AddScoped<IYandexIdClient, YandexIdClient>()
-                .AddOAuthClient()
-                .AddYandexIdClient()
-                .AddYandexAppParameters();
-
-    private static IServiceCollection AddYandexAppParameters(this IServiceCollection services)
+    extension(IServiceCollection services)
     {
-        services.AddOptions<YandexAppParameters>().BindConfiguration(nameof(YandexAppParameters));
-        return services;
+        public IServiceCollection AddYandexClient() =>
+            services.AddOAuthClient()
+                    .AddYandexIdClient();
+
+        private IServiceCollection AddYandexIdClient() =>
+            services.AddScoped<IYandexIdClient, YandexIdClient>()
+                    .AddScoped<YandexIdClientFactory>(_ => token =>
+                     {
+                         var authenticator = new OAuth2AuthorizationRequestHeaderAuthenticator(token);
+                         return new RestClient("https://login.yandex.ru", options => options.Authenticator = authenticator);
+                     });
     }
-
-    private static IServiceCollection AddOAuthClient(this IServiceCollection services) =>
-        services.AddKeyedScoped<IAuthenticator>(ClientType.YandexOAuth,
-                                                (provider, _) =>
-                                                {
-                                                    var (clientId, clientSecret) = provider.GetRequiredService<IOptions<YandexAppParameters>>().Value;
-                                                    return new HttpBasicAuthenticator(clientId, clientSecret);
-                                                })
-                .AddKeyedScoped<IRestClient>(ClientType.YandexOAuth,
-                                             (provider, key) =>
-                                             {
-                                                 var authenticator = provider.GetRequiredKeyedService<IAuthenticator>(key);
-                                                 return new RestClient("https://oauth.yandex.ru",
-                                                                       options => options.Authenticator = authenticator);
-                                             });
-
-    private static IServiceCollection AddYandexIdClient(this IServiceCollection services) =>
-        services.AddScoped<YandexIdClientFactory>(_ => token =>
-        {
-            var authenticator = new OAuth2AuthorizationRequestHeaderAuthenticator(token);
-            return new RestClient("https://login.yandex.ru",
-                                  options => options.Authenticator = authenticator);
-        });
 }

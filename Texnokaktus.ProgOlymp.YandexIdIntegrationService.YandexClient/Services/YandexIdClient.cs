@@ -9,7 +9,7 @@ internal class YandexIdClient(YandexIdClientFactory clientFactory) : IYandexIdCl
 {
     public async Task<UserData> GetUserDataAsync(string accessToken)
     {
-        var client = clientFactory.Invoke(accessToken);
+        using var client = clientFactory.Invoke(accessToken);
         
         var request = new RestRequest("info");
 
@@ -22,9 +22,6 @@ internal class YandexIdClient(YandexIdClientFactory clientFactory) : IYandexIdCl
             throw new YandexApiException("An error occurred while requesting the user data");
         }
 
-        if (response.Data is null)
-            throw new YandexApiException("Invalid data from Yandex ID server");
-
-        return response.Data;
+        return response.Data ?? throw new YandexApiException("Invalid data from Yandex ID server");
     }
 }
