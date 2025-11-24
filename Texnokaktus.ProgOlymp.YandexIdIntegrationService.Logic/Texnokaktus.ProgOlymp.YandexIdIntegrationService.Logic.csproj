@@ -8,7 +8,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Texnokaktus.ProgOlymp.YandexIdIntegrationService.DataAccess\Texnokaktus.ProgOlymp.YandexIdIntegrationService.DataAccess.csproj" />
-      <ProjectReference Include="..\Texnokaktus.ProgOlymp.YandexIdIntegrationService.Domain\Texnokaktus.ProgOlymp.YandexIdIntegrationService.Domain.csproj" />
       <ProjectReference Include="..\Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient\Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient.csproj" />
     </ItemGroup>
 

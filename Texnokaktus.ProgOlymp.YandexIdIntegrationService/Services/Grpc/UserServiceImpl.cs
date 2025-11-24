@@ -37,17 +37,16 @@ public class UserServiceImpl(IUserDataService userDataService, IAuthService auth
 
 file static class MappingExtensions
 {
-    public static User MapUser(this Domain.User user) =>
+    public static User MapUser(this DataAccess.Entities.User user) =>
         new()
         {
             Login = user.Login,
             DisplayName = user.DisplayName,
-            Avatar = user.Avatar?.MapAvatar()
-        };
-
-    private static Avatar MapAvatar(this Domain.Avatar avatar) =>
-        new()
-        {
-            AvatarId = avatar.AvatarId
+            Avatar = user.IsAvatarEmpty.HasValue
+                         ? new Avatar
+                         {
+                             AvatarId = user.AvatarId
+                         }
+                         : null
         };
 }

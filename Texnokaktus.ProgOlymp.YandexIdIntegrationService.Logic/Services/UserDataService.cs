@@ -1,8 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Texnokaktus.ProgOlymp.YandexIdIntegrationService.DataAccess.Context;
-using Texnokaktus.ProgOlymp.YandexIdIntegrationService.Domain;
+using Texnokaktus.ProgOlymp.YandexIdIntegrationService.DataAccess.Entities;
 using Texnokaktus.ProgOlymp.YandexIdIntegrationService.Logic.Services.Abstractions;
-using Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient.Models;
 using Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient.Services.Abstractions;
 using YandexOAuthClient.Abstractions;
 
@@ -31,29 +30,9 @@ internal class UserDataService(IAuthService authService,
 
         await context.SaveChangesAsync();
 
-        return userData.MapUser();
+        return user;
     }
 
-    public async Task<User?> GetUserInfoAsync(string login)
-    {
-        var user = await context.Users.AsNoTracking().FirstOrDefaultAsync(user => user.Login == login);
-        return user?.MapUser();
-    }
-}
-
-file static class MappingExtensions
-{
-    public static User MapUser(this UserData userData) =>
-        new(userData.Login,
-            userData.DisplayName,
-            userData.IsAvatarEmpty.HasValue
-                ? new Avatar(userData.DefaultAvatarId)
-                : null);
-    
-    public static User MapUser(this DataAccess.Entities.User user) =>
-        new(user.Login,
-            user.DisplayName,
-            user.IsAvatarEmpty.HasValue
-                ? new Avatar(user.AvatarId)
-                : null);
+    public async Task<User?> GetUserInfoAsync(string login) =>
+        await context.Users.AsNoTracking().FirstOrDefaultAsync(user => user.Login == login);
 }
