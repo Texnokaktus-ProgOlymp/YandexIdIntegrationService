@@ -17,22 +17,17 @@ internal class UserDataService(IAuthService authService,
         var token = await authService.GetAccessTokenAsync(code);
         var userData = await yandexIdClient.GetUserDataAsync(token);
 
-        if (await context.Users.FirstOrDefaultAsync(dbUser => dbUser.Login == userData.Login) is { } user)
-        {
-            user.DisplayName = userData.DisplayName;
-            user.IsAvatarEmpty = userData.IsAvatarEmpty;
-            user.AvatarId = userData.DefaultAvatarId;
-        }
-        else
-        {
-            context.Users.Add(new()
-            {
-                Login = userData.Login,
-                DisplayName = userData.DisplayName,
-                IsAvatarEmpty = userData.IsAvatarEmpty,
-                AvatarId = userData.DefaultAvatarId
-            });
-        }
+        var user = await context.Users.FirstOrDefaultAsync(dbUser => dbUser.Login == userData.Login)
+                ?? context.Users
+                          .Add(new()
+                           {
+                               Login = userData.Login
+                           })
+                          .Entity;
+
+        user.DisplayName = userData.DisplayName;
+        user.IsAvatarEmpty = userData.IsAvatarEmpty;
+        user.AvatarId = userData.DefaultAvatarId;
 
         await context.SaveChangesAsync();
 
