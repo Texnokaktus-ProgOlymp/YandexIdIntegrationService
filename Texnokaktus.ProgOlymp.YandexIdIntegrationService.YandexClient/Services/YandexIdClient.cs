@@ -9,7 +9,7 @@ internal class YandexIdClient(YandexIdClientFactory clientFactory) : IYandexIdCl
 {
     public async Task<UserData> GetUserDataAsync(string accessToken)
     {
-        var client = clientFactory.Invoke(accessToken);
+        using var client = clientFactory.Invoke(accessToken);
         
         var request = new RestRequest("info");
 
