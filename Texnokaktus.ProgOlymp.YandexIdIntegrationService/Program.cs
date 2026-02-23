@@ -1,20 +1,14 @@
 using System.Reflection;
 using Microsoft.AspNetCore.DataProtection;
-using Microsoft.EntityFrameworkCore;
 using Serilog;
 using StackExchange.Redis;
 using Texnokaktus.ProgOlymp.OpenTelemetry;
-using Texnokaktus.ProgOlymp.YandexIdIntegrationService.DataAccess;
-using Texnokaktus.ProgOlymp.YandexIdIntegrationService.Logic;
 using Texnokaktus.ProgOlymp.YandexIdIntegrationService.Services.Grpc;
 using Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services
-       .AddDataAccess(optionsBuilder => optionsBuilder.UseSqlServer(builder.Configuration.GetConnectionString("DefaultDb")))
-       .AddYandexClient()
-       .AddLogic();
+builder.Services.AddYandexClient();
 
 var connectionMultiplexer = await ConnectionMultiplexer.ConnectAsync(builder.Configuration.GetConnectionString("DefaultRedis")!);
 builder.Services.AddSingleton<IConnectionMultiplexer>(connectionMultiplexer);
@@ -23,11 +17,10 @@ builder.Services.AddMemoryCache();
 
 builder.Services.AddGrpc();
 builder.Services.AddGrpcReflection();
-builder.Services
-       .AddGrpcHealthChecks()
-       .AddDatabaseHealthChecks();
 
-builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom.Configuration(context.Configuration));
+builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom
+                                                                 .Configuration(context.Configuration)
+                                                                 .AddOpenTelemetrySupport("YandexIdIntegrationService"));
 
 builder.Services.AddTexnokaktusOpenTelemetry("YandexIdIntegrationService", null, null);
 
@@ -41,8 +34,6 @@ if (app.Environment.IsDevelopment())
 {
     app.MapGrpcReflectionService();
 }
-
-app.MapGrpcHealthChecksService();
 
 app.MapGrpcService<UserServiceImpl>();
 

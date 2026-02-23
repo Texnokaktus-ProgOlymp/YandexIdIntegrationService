@@ -9,7 +9,6 @@
 
     <ItemGroup>
         <PackageReference Include="Grpc.AspNetCore" />
-        <PackageReference Include="Grpc.AspNetCore.HealthChecks" />
         <PackageReference Include="Grpc.AspNetCore.Server.Reflection" />
         <PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" />
         <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" />
@@ -22,8 +21,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\modules\Common.Contracts\Texnokaktus.ProgOlymp.Common.Contracts\Texnokaktus.ProgOlymp.Common.Contracts.csproj" />
-      <ProjectReference Include="..\Texnokaktus.ProgOlymp.YandexIdIntegrationService.DataAccess\Texnokaktus.ProgOlymp.YandexIdIntegrationService.DataAccess.csproj" />
-      <ProjectReference Include="..\Texnokaktus.ProgOlymp.YandexIdIntegrationService.Logic\Texnokaktus.ProgOlymp.YandexIdIntegrationService.Logic.csproj" />
       <ProjectReference Include="..\Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient\Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient.csproj" />
     </ItemGroup>
 

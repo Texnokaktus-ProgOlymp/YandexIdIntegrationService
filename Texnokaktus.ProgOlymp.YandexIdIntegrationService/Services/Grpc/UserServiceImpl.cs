@@ -1,11 +1,11 @@
 using Grpc.Core;
 using Texnokaktus.ProgOlymp.Common.Contracts.Grpc.YandexId;
-using Texnokaktus.ProgOlymp.YandexIdIntegrationService.Logic.Services.Abstractions;
+using Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient.Services.Abstractions;
 using YandexOAuthClient.Abstractions;
 
 namespace Texnokaktus.ProgOlymp.YandexIdIntegrationService.Services.Grpc;
 
-public class UserServiceImpl(IUserDataService userDataService, IAuthService authService) : UserService.UserServiceBase
+public class UserServiceImpl(IAuthService authService, IYandexIdClient yandexIdClient) : UserService.UserServiceBase
 {
     public override Task<GetOAuthUrlResponse> GetOAuthUrl(GetOAuthUrlRequest request, ServerCallContext context) =>
         Task.FromResult(new GetOAuthUrlResponse
@@ -15,27 +15,22 @@ public class UserServiceImpl(IUserDataService userDataService, IAuthService auth
 
     public override async Task<AuthenticateUserResponse> AuthenticateUser(AuthenticateUserRequest request, ServerCallContext context)
     {
-        var user = await userDataService.AuthenticateUserAsync(request.Code);
+        var token = await authService.GetAccessTokenAsync(request.Code);
+        var userData = await yandexIdClient.GetUserDataAsync(token);
 
         return new()
         {
-            Result = user.MapUser()
+            Result = new()
+            {
+                Login = userData.Login,
+                DisplayName = userData.DisplayName,
+                Avatar = userData.IsAvatarEmpty.HasValue
+                             ? new Avatar
+                             {
+                                 AvatarId = userData.DefaultAvatarId
+                             }
+                             : null
+            }
         };
     }
-}
-
-file static class MappingExtensions
-{
-    public static User MapUser(this DataAccess.Entities.User user) =>
-        new()
-        {
-            Login = user.Login,
-            DisplayName = user.DisplayName,
-            Avatar = user.IsAvatarEmpty.HasValue
-                         ? new Avatar
-                         {
-                             AvatarId = user.AvatarId
-                         }
-                         : null
-        };
 }

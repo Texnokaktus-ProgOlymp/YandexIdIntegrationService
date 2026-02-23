@@ -14,10 +14,7 @@ WORKDIR /src
 COPY ["Directory.Packages.props", "./"]
 COPY ["modules/Common.Contracts/Directory.Packages.props", "modules/Common.Contracts/"]
 COPY ["Texnokaktus.ProgOlymp.YandexIdIntegrationService/Texnokaktus.ProgOlymp.YandexIdIntegrationService.csproj", "Texnokaktus.ProgOlymp.YandexIdIntegrationService/"]
-COPY ["Texnokaktus.ProgOlymp.YandexIdIntegrationService.DataAccess/Texnokaktus.ProgOlymp.YandexIdIntegrationService.DataAccess.csproj", "Texnokaktus.ProgOlymp.YandexIdIntegrationService.DataAccess/"]
 COPY ["Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient/Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient.csproj", "Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient/"]
-COPY ["Texnokaktus.ProgOlymp.YandexIdIntegrationService.Logic/Texnokaktus.ProgOlymp.YandexIdIntegrationService.Logic.csproj", "Texnokaktus.ProgOlymp.YandexIdIntegrationService.Logic/"]
-COPY ["Texnokaktus.ProgOlymp.YandexIdIntegrationService.Domain/Texnokaktus.ProgOlymp.YandexIdIntegrationService.Domain.csproj", "Texnokaktus.ProgOlymp.YandexIdIntegrationService.Domain/"]
 COPY ["modules/Common.Contracts/Texnokaktus.ProgOlymp.Common.Contracts/Texnokaktus.ProgOlymp.Common.Contracts.csproj", "modules/Common.Contracts/Texnokaktus.ProgOlymp.Common.Contracts/"]
 RUN dotnet nuget add source --username kav128 --password $GHPAT --store-password-in-clear-text --name "GitHub TexnoKaktus-Progolymp" https://nuget.pkg.github.com/Texnokaktus-ProgOlymp/index.json
 RUN dotnet restore "Texnokaktus.ProgOlymp.YandexIdIntegrationService/Texnokaktus.ProgOlymp.YandexIdIntegrationService.csproj" --runtime $TARGETOS-$TARGETARCH
