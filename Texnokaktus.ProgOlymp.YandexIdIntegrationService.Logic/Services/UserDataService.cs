@@ -32,7 +32,4 @@ internal class UserDataService(IAuthService authService,
 
         return user;
     }
-
-    public async Task<User?> GetUserInfoAsync(string login) =>
-        await context.Users.AsNoTracking().FirstOrDefaultAsync(user => user.Login == login);
 }

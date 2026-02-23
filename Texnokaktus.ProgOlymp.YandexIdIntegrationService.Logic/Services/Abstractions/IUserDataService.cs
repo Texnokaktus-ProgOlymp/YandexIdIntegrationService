@@ -5,5 +5,4 @@ namespace Texnokaktus.ProgOlymp.YandexIdIntegrationService.Logic.Services.Abstra
 public interface IUserDataService
 {
     Task<User> AuthenticateUserAsync(string code);
-    Task<User?> GetUserInfoAsync(string login);
 }

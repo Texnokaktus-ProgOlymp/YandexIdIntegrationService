@@ -22,17 +22,6 @@ public class UserServiceImpl(IUserDataService userDataService, IAuthService auth
             Result = user.MapUser()
         };
     }
-
-    public override async Task<GetUserResponse> GetUser(GetUserRequest request, ServerCallContext context)
-    {
-        if (await userDataService.GetUserInfoAsync(request.Login) is not { } user)
-            throw new RpcException(new(StatusCode.NotFound, $"User with login '{request.Login}' cannot be found"));
-
-        return new()
-        {
-            Result = user.MapUser()
-        };
-    }
 }
 
 file static class MappingExtensions
