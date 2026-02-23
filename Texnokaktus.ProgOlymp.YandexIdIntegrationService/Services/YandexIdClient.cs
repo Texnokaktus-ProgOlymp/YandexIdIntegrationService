@@ -1,9 +1,8 @@
-using System.Net.Http.Json;
-using Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient.Exceptions;
-using Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient.Models;
-using Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient.Services.Abstractions;
+using Texnokaktus.ProgOlymp.YandexIdIntegrationService.Exceptions;
+using Texnokaktus.ProgOlymp.YandexIdIntegrationService.Models;
+using Texnokaktus.ProgOlymp.YandexIdIntegrationService.Services.Abstractions;
 
-namespace Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient.Services;
+namespace Texnokaktus.ProgOlymp.YandexIdIntegrationService.Services;
 
 internal class YandexIdClient(HttpClient client) : IYandexIdClient
 {

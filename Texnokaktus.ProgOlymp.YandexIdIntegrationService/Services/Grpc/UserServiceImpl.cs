@@ -1,6 +1,6 @@
 using Grpc.Core;
 using Texnokaktus.ProgOlymp.Common.Contracts.Grpc.YandexId;
-using Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient.Services.Abstractions;
+using Texnokaktus.ProgOlymp.YandexIdIntegrationService.Services.Abstractions;
 using YandexOAuthClient.Abstractions;
 
 namespace Texnokaktus.ProgOlymp.YandexIdIntegrationService.Services.Grpc;

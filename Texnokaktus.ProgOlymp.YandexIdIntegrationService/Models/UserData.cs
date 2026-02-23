@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient.Models;
+namespace Texnokaktus.ProgOlymp.YandexIdIntegrationService.Models;
 
 public record UserData
 {

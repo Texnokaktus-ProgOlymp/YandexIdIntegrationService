@@ -2,6 +2,5 @@
   <Folder Name="/Common/">
     <Project Path="modules/Common.Contracts/Texnokaktus.ProgOlymp.Common.Contracts/Texnokaktus.ProgOlymp.Common.Contracts.csproj" />
   </Folder>
-  <Project Path="Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient/Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient.csproj" />
   <Project Path="Texnokaktus.ProgOlymp.YandexIdIntegrationService/Texnokaktus.ProgOlymp.YandexIdIntegrationService.csproj" />
 </Solution>

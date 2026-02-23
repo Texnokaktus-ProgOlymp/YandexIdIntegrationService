@@ -17,11 +17,11 @@
         <PackageReference Include="Serilog.Enrichers.Environment" />
         <PackageReference Include="Serilog.Extensions.Hosting" />
         <PackageReference Include="Texnokaktus.ProgOlymp.OpenTelemetry" />
+        <PackageReference Include="YandexOAuthClient" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\modules\Common.Contracts\Texnokaktus.ProgOlymp.Common.Contracts\Texnokaktus.ProgOlymp.Common.Contracts.csproj" />
-      <ProjectReference Include="..\Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient\Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient.csproj" />
     </ItemGroup>
 
     <ItemGroup>

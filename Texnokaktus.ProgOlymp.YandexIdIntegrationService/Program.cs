@@ -3,12 +3,15 @@ using Microsoft.AspNetCore.DataProtection;
 using Serilog;
 using StackExchange.Redis;
 using Texnokaktus.ProgOlymp.OpenTelemetry;
+using Texnokaktus.ProgOlymp.YandexIdIntegrationService.Services;
+using Texnokaktus.ProgOlymp.YandexIdIntegrationService.Services.Abstractions;
 using Texnokaktus.ProgOlymp.YandexIdIntegrationService.Services.Grpc;
-using Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient;
+using YandexOAuthClient;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddYandexClient();
+builder.Services.AddOAuthClient()
+       .AddHttpClient<IYandexIdClient, YandexIdClient>(client => client.BaseAddress = new("https://login.yandex.ru"));
 
 var connectionMultiplexer = await ConnectionMultiplexer.ConnectAsync(builder.Configuration.GetConnectionString("DefaultRedis")!);
 builder.Services.AddSingleton<IConnectionMultiplexer>(connectionMultiplexer);
