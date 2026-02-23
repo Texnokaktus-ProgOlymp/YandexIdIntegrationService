@@ -1,27 +1,26 @@
-using RestSharp;
+using System.Net.Http.Json;
 using Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient.Exceptions;
 using Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient.Models;
 using Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient.Services.Abstractions;
 
 namespace Texnokaktus.ProgOlymp.YandexIdIntegrationService.YandexClient.Services;
 
-internal class YandexIdClient(YandexIdClientFactory clientFactory) : IYandexIdClient
+internal class YandexIdClient(HttpClient client) : IYandexIdClient
 {
     public async Task<UserData> GetUserDataAsync(string accessToken)
     {
-        using var client = clientFactory.Invoke(accessToken);
-        
-        var request = new RestRequest("info");
-
-        var response = await client.ExecuteGetAsync<UserData>(request);
-
-        if (!response.IsSuccessful)
+        var requestMessage = new HttpRequestMessage(HttpMethod.Get, "info")
         {
-            if (response.ErrorException is not null)
-                throw new YandexApiException("An error occurred while requesting the user data", response.ErrorException);
-            throw new YandexApiException("An error occurred while requesting the user data");
-        }
+            Headers =
+            {
+                Authorization = new("OAuth", accessToken)
+            }
+        };
 
-        return response.Data ?? throw new YandexApiException("Invalid data from Yandex ID server");
+        var responseMessage = await client.SendAsync(requestMessage);
+        responseMessage.EnsureSuccessStatusCode();
+
+        return await responseMessage.Content.ReadFromJsonAsync<UserData>()
+            ?? throw new YandexApiException("Invalid data from Yandex ID server");
     }
 }

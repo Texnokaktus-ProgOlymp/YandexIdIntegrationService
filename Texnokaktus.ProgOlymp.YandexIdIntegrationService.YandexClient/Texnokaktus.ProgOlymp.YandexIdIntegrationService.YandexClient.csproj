@@ -9,7 +9,6 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" />
         <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" />
-        <PackageReference Include="RestSharp" />
         <PackageReference Include="YandexOAuthClient" />
     </ItemGroup>
 
