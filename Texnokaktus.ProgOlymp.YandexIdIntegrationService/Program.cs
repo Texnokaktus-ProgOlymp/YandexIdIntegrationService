@@ -29,7 +29,8 @@ builder.Services.AddTexnokaktusOpenTelemetry("YandexIdIntegrationService", null,
 
 builder.Services
        .AddDataProtection(options => options.ApplicationDiscriminator = Assembly.GetEntryAssembly()?.GetName().Name)
-       .PersistKeysToStackExchangeRedis(connectionMultiplexer);
+       .PersistKeysToStackExchangeRedis(connectionMultiplexer)
+       .DisableAutomaticKeyGeneration();
 
 var app = builder.Build();
 
