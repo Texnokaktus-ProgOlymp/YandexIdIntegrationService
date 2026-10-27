@@ -12,9 +12,7 @@ ARG TARGETOS
 ARG TARGETARCH
 WORKDIR /src
 COPY ["Directory.Build.props", "Directory.Packages.props", "NuGet.Config", "./"]
-COPY ["modules/Common.Contracts/Directory.Packages.props", "modules/Common.Contracts/"]
 COPY ["src/Texnokaktus.ProgOlymp.YandexIdIntegrationService/Texnokaktus.ProgOlymp.YandexIdIntegrationService.csproj", "src/Texnokaktus.ProgOlymp.YandexIdIntegrationService/"]
-COPY ["modules/Common.Contracts/Texnokaktus.ProgOlymp.Common.Contracts/Texnokaktus.ProgOlymp.Common.Contracts.csproj", "modules/Common.Contracts/Texnokaktus.ProgOlymp.Common.Contracts/"]
 RUN --mount=type=secret,id=nuget_credentials,required=true \
     export NuGetPackageSourceCredentials_github="$(cat /run/secrets/nuget_credentials)" && \
     dotnet restore "src/Texnokaktus.ProgOlymp.YandexIdIntegrationService/Texnokaktus.ProgOlymp.YandexIdIntegrationService.csproj" --runtime $TARGETOS-$TARGETARCH

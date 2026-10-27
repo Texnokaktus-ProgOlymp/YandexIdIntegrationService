@@ -14,7 +14,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\modules\Common.Contracts\Texnokaktus.ProgOlymp.Common.Contracts\Texnokaktus.ProgOlymp.Common.Contracts.csproj" />
+      <Protobuf Include="..\..\modules\Common.Contracts\proto\YandexId\UserService.proto" Link="Proto\UserService.proto" ProtoRoot="..\..\modules\Common.Contracts\proto" GrpcServices="Server" />
     </ItemGroup>
 
     <ItemGroup>

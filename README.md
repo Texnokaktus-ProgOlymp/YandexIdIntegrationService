@@ -1,11 +1,11 @@
 # Yandex ID Integration Service
 
-Сервис предоставляет gRPC API для авторизации через Яндекс ID: формирует OAuth URL и обменивает код на данные пользователя. Контракт `UserService` находится в `modules/Common.Contracts/`.
+Сервис предоставляет gRPC API для авторизации через Яндекс ID: формирует OAuth URL и обменивает код на данные пользователя. Контракт `UserService` находится в `modules/Common.Contracts/proto/YandexId/UserService.proto` и компилируется в сервисе с серверными gRPC-типами.
 
 ## Структура
 
 - `src/Texnokaktus.ProgOlymp.YandexIdIntegrationService/` — ASP.NET Core сервис и Dockerfile.
-- `modules/Common.Contracts/` — Git submodule с общими protobuf-контрактами; у него собственный `Directory.Packages.props`.
+- `modules/Common.Contracts/` — Git submodule: схемы находятся в `proto/`, а проект контрактов содержит общие C# типы и использует собственный `Directory.Packages.props`.
 - `Directory.Build.props`, `Directory.Packages.props` — общие настройки сборки и версии пакетов сервиса.
 - `NuGet.Config` — источники nuget.org и GitHub Packages и привязка пакетов к источникам: `Texnokaktus.ProgOlymp.*` и `YandexOAuthClient*` — GitHub Packages, остальные — nuget.org.
 - `.github/workflows/dotnet.yml` — сборка и публикация образа; deploy отключён.

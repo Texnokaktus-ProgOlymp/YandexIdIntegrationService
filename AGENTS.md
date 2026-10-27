@@ -5,8 +5,8 @@
 - `src/Texnokaktus.ProgOlymp.YandexIdIntegrationService` — ASP.NET Core gRPC-сервис на .NET 10. Регистрация зависимостей и endpoints находится в `Program.cs`.
 - `Services/Grpc/UserServiceImpl.cs` реализует методы `GetOAuthUrl` и `AuthenticateUser`. Он использует `IAuthService` для OAuth и `IYandexIdClient` для запроса данных пользователя.
 - `Services/YandexIdClient.cs` обращается к `https://login.yandex.ru/info`; модель ответа находится в `Models/UserData.cs`. При изменении обработки ответа учитывайте соответствие полей gRPC-контракту.
-- Protobuf-контракт `UserService` расположен в `modules/Common.Contracts/Texnokaktus.ProgOlymp.Common.Contracts/Protos/YandexId/UserService.proto`. Контракты генерируются из protobuf при сборке; не редактируйте сгенерированные файлы в `obj`.
-- `modules/Common.Contracts` — Git submodule с собственными настройками и версиями пакетов. Не изменяйте его без необходимости. Для получения контрактов выполните `git submodule update --init --recursive`; при изменении контракта учитывайте совместимость клиентов и отдельно проверяйте состояние submodule.
+- Protobuf-контракт `UserService` расположен в `modules/Common.Contracts/proto/YandexId/UserService.proto`. Сервис подключает его как `Proto/UserService.proto` и генерирует только серверные gRPC-типы; не редактируйте сгенерированные файлы в `obj`.
+- `modules/Common.Contracts` — Git submodule с proto-схемами в корневом `proto/` и проектом контрактов с собственными настройками и версиями пакетов. `Grpc/Common/DecimalValue.cs` внутри проекта контрактов дополняет C# тип, сгенерированный из `proto/Common/common.proto`. Не изменяйте его без необходимости. Для получения контрактов выполните `git submodule update --init --recursive`; при изменении контракта учитывайте совместимость клиентов и отдельно проверяйте состояние submodule.
 
 ## Сборка и зависимости
 
