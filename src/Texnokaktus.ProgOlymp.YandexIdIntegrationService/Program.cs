@@ -1,8 +1,7 @@
 using System.Reflection;
 using Microsoft.AspNetCore.DataProtection;
-using Serilog;
 using StackExchange.Redis;
-using Texnokaktus.ProgOlymp.OpenTelemetry;
+using Texnokaktus.ProgOlymp.Platform;
 using Texnokaktus.ProgOlymp.YandexIdIntegrationService.Services;
 using Texnokaktus.ProgOlymp.YandexIdIntegrationService.Services.Abstractions;
 using Texnokaktus.ProgOlymp.YandexIdIntegrationService.Services.Grpc;
@@ -21,11 +20,7 @@ builder.Services.AddMemoryCache();
 builder.Services.AddGrpc();
 builder.Services.AddGrpcReflection();
 
-builder.Host.UseSerilog((context, configuration) => configuration.ReadFrom
-                                                                 .Configuration(context.Configuration)
-                                                                 .AddOpenTelemetrySupport("YandexIdIntegrationService"));
-
-builder.Services.AddTexnokaktusOpenTelemetry("YandexIdIntegrationService", null, null);
+builder.UsePlatform();
 
 builder.Services
        .AddDataProtection(options => options.ApplicationDiscriminator = Assembly.GetEntryAssembly()?.GetName().Name)
